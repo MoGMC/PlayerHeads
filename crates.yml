@@ -1,0 +1,7 @@
+active_crate: moonrise
+collections:
+  beta_test:
+    name: "&4The Beta Tester"
+    heads:
+      baby_ball:
+        rarity: 999
