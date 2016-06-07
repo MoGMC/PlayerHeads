@@ -9,6 +9,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -32,7 +33,7 @@ public class CrateFactory {
 
 		for (String headId : headChances.getKeys(false)) {
 
-			if (chance < headChances.getInt(headId)) {
+			if (chance <= headChances.getInt(headId + ".rarity")) {
 
 				// this is the crate that has been picked
 
@@ -56,8 +57,11 @@ public class CrateFactory {
 
 		// add crate lore (after head's own lore)
 
+		// add space before crate lore
+		head.addLore("");
+
 		for (String line : crateConfig.getStringList("lore")) {
-			head.addLore(line);
+			head.addLore(ChatColor.translateAlternateColorCodes('&', line));
 
 		}
 

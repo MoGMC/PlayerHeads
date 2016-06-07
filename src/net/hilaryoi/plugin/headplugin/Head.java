@@ -21,24 +21,18 @@ public class Head {
 
 	NBTTagList lore;
 
-	public Head(String name, String value) {
+	public Head(String name, String uuid, String value) {
 
 		this.name = name;
 		this.value = value;
 
 		nbt = new NBTTagCompound();
 
-		// display
-
-		NBTTagCompound display = new NBTTagCompound();
-
-		display.setString("Name", name);
-
-		nbt.set("display", display);
-
 		// skull information
 
 		NBTTagCompound skullOwner = new NBTTagCompound();
+
+		skullOwner.setString("Id", uuid);
 
 		NBTTagCompound propertiesCompound = new NBTTagCompound();
 
@@ -56,6 +50,8 @@ public class Head {
 
 		nbt.set("SkullOwner", skullOwner);
 
+		lore = new NBTTagList();
+
 	}
 
 	// creates the physical item or recreates it (if some effect was added)
@@ -69,7 +65,17 @@ public class Head {
 		 * add glowing effects, etc here
 		 */
 
-		nbt.set("Lore", lore);
+		// display
+
+		NBTTagCompound display = new NBTTagCompound();
+
+		display.setString("Name", name);
+
+		display.set("Lore", lore);
+
+		nbt.set("display", display);
+
+		System.out.println(nbt.toString());
 
 		mHead.setTag(nbt);
 

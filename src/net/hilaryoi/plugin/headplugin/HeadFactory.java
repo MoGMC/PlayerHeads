@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -34,11 +35,12 @@ public class HeadFactory {
 
 		}
 
-		Head head = new Head(headConfig.getString("name"), headConfig.getString("value"));
+		Head head = new Head(ChatColor.translateAlternateColorCodes('&', headConfig.getString("name")),
+				headConfig.getString("uuid"), headConfig.getString("value"));
 
 		for (String line : headConfig.getStringList("lore")) {
 
-			head.addLore(line);
+			head.addLore(ChatColor.translateAlternateColorCodes('&', line));
 
 		}
 
