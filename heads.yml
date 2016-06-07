@@ -1,6 +1,6 @@
 baby_ball:
   name: “&6Baby Ball”
-  description:
+  lore:
     - "&fIt's nice to be a baby"
     - ""
     - "&dCreated by joe_the_mc_player as part of the"

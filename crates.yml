@@ -1,7 +1,14 @@
-active_crate: moonrise
+active_crate: beta_test
 collections:
   beta_test:
     name: "&4The Beta Tester"
+    lore:
+      - "&lBeta Testing Crate"
+      - "Contains the following heads:"
+      - "- Baby Ball"
+      - "This crate was meant for testing purposes."
+      - ""
+      - "The line before this should be blank."
     heads:
       baby_ball:
         rarity: 999
