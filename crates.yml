@@ -1,5 +1,5 @@
 active_crate: beta_test
-collections:
+crates:
   beta_test:
     name: "&4The Beta Tester"
     lore:
