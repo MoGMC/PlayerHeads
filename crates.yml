@@ -1,5 +1,16 @@
 active_crate: beta_test
 crates:
+  lunchbox:
+    name: "&4Lunchbox"
+    lore:
+      - "&6The Lunchbox Series"
+      - ""
+      - "&fContains lunch themed heads!"
+    heads:
+      red_apple: 100
+      orange: 100
+      coca_cola: 100
+      ham_cheese_sandwich: 999
   beta_test:
     name: "&4The Beta Tester"
     lore:

@@ -37,7 +37,7 @@ public class HeadPlugin extends JavaPlugin {
 
 		}
 
-		Head head = CrateFactory.generateHead("beta_test");
+		Head head = CrateFactory.generateHead("lunchbox");
 
 		((Player) sender).getInventory().addItem(head.getItem());
 
