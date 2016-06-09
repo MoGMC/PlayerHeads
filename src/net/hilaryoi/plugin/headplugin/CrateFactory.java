@@ -33,7 +33,7 @@ public class CrateFactory {
 
 		for (String headId : headChances.getKeys(false)) {
 
-			if (chance <= headChances.getInt(headId + ".rarity")) {
+			if (chance <= headChances.getInt(headId)) {
 
 				// this is the crate that has been picked
 
