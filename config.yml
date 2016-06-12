@@ -1,2 +1,6 @@
+# URLs to remote YAML files
 heads_url: "https://github.com/MoGMC/PlayerHeads/raw/master/config/heads.yml"
 crates_url: "https://github.com/MoGMC/PlayerHeads/raw/master/config/crates.yml"
+# For hashing
+algorithm: "SHA-1"
+salt: "%(&@7824^*(&*"

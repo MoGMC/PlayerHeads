@@ -8,11 +8,13 @@ storage.yml stored in plugin folder
 
 # example
 keys:
-  - "hashed value of data that makes this key unique (e.g. player who it was granted to, date, etc.) with some salt"
-  - "key2hash"
+  - hashed value of data that makes this key unique (e.g. player who it was granted to, date, etc.) with some salt
+  - key2hash
+  - key3hash
 crate:
-  - "crate1hash"
-  - "crate2hash"
+  # Ideally, crates would also have the crate series stored as well (the set it originally belonged to). However, it's unlikely that a player can edit NBT.
+  - crate1hash
+  - crate2hash
 ##
 
 key/crate hashes designed to be unique, removed once key/crate is used by a player.
