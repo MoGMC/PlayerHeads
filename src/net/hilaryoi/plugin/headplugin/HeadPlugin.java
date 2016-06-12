@@ -5,44 +5,49 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HeadPlugin extends JavaPlugin {
 
-	@Override
-	public void onEnable() {
+		@Override
+		public void onEnable() {
 
-		try {
+			saveDefaultConfig();
 
-			HeadFactory.loadHeads("https://raw.githubusercontent.com/MoGMC/PlayerHeads/master/heads.yml");
-			CrateFactory.loadCrates("https://raw.githubusercontent.com/MoGMC/PlayerHeads/master/crates.yml");
+			FileConfiguration config = getConfig();
 
-		} catch (IOException e) {
+			try {
 
-			Bukkit.getLogger().severe("Could not fetch head or crate information. Disabling plugin.");
-			Bukkit.getPluginManager().disablePlugin(this);
+					HeadFactory.loadHeads(config.getString("heads_url"));
+					CrateFactory.loadCrates(config.getString("crates_url"));
 
-			e.printStackTrace();
+			} catch (IOException e) {
 
-		}
+					Bukkit.getLogger().severe("Could not fetch head or crate information. Disabling plugin.");
+					Bukkit.getPluginManager().disablePlugin(this);
 
-	}
+					e.printStackTrace();
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-		if (!(sender instanceof Player)) {
-			return false;
+			}
 
 		}
 
-		Head head = CrateFactory.generateHead("lunchbox");
+		@Override
+		public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		((Player) sender).getInventory().addItem(head.getItem());
+			if (!(sender instanceof Player)) {
+					return false;
 
-		return true;
+			}
 
-	}
+			Head head = CrateFactory.generateHead("lunchbox");
+
+			((Player) sender).getInventory().addItem(head.getItem());
+
+			return true;
+
+		}
 
 }
