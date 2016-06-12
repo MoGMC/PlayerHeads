@@ -3,8 +3,7 @@ crates:
   lunchbox:
     name: "&4Lunchbox"
     lore:
-      - "&6The Lunchbox Series"
-      - ""
+      - "&6&lThe Lunchbox Series"
       - "&fContains lunch themed heads!"
     heads:
       red_apple: 100
