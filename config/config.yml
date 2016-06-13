@@ -1,0 +1,6 @@
+# Not plugin config, a config to change misc things like festive key displays / etc
+key_display:
+  name: "&6Key"
+  lore:
+    - "&2It's a key!"
+    - "&2Unlocks one crate."

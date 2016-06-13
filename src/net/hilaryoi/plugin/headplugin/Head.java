@@ -1,104 +1,67 @@
 package net.hilaryoi.plugin.headplugin;
 
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_9_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
-import net.minecraft.server.v1_9_R2.NBTTagCompound;
-import net.minecraft.server.v1_9_R2.NBTTagList;
-import net.minecraft.server.v1_9_R2.NBTTagString;
+import net.minecraft.server.v1_10_R1.NBTTagCompound;
+import net.minecraft.server.v1_10_R1.NBTTagList;
 
-public class Head {
+public class Head extends NBTItem {
 
-	String name;
+		// "value" is the head's skin.
+		String value;
 
-	// "value" is the head's skin.
-	String value;
+		public Head(String name, String uuid, String value) {
 
-	ItemStack item;
+			super();
 
-	NBTTagCompound nbt;
+			this.name = name;
+			this.value = value;
 
-	NBTTagList lore;
+			// skull information
 
-	public Head(String name, String uuid, String value) {
+			NBTTagCompound skullOwner = new NBTTagCompound();
 
-		this.name = name;
-		this.value = value;
+			skullOwner.setString("Id", uuid);
 
-		nbt = new NBTTagCompound();
+			NBTTagCompound propertiesCompound = new NBTTagCompound();
 
-		// skull information
+			NBTTagList texturesCompound = new NBTTagList();
 
-		NBTTagCompound skullOwner = new NBTTagCompound();
+			NBTTagCompound valueCompound = new NBTTagCompound();
 
-		skullOwner.setString("Id", uuid);
+			valueCompound.setString("Value", value);
 
-		NBTTagCompound propertiesCompound = new NBTTagCompound();
+			texturesCompound.add(valueCompound);
 
-		NBTTagList texturesCompound = new NBTTagList();
+			propertiesCompound.set("textures", texturesCompound);
 
-		NBTTagCompound valueCompound = new NBTTagCompound();
+			skullOwner.set("Properties", propertiesCompound);
 
-		valueCompound.setString("Value", value);
-
-		texturesCompound.add(valueCompound);
-
-		propertiesCompound.set("textures", texturesCompound);
-
-		skullOwner.set("Properties", propertiesCompound);
-
-		nbt.set("SkullOwner", skullOwner);
-
-		lore = new NBTTagList();
-
-	}
-
-	// creates the physical item or recreates it (if some effect was added)
-	public void createItem() {
-
-		item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-
-		net.minecraft.server.v1_9_R2.ItemStack mHead = CraftItemStack.asNMSCopy(item);
-
-		/*
-		 * add glowing effects, etc here
-		 */
-
-		// display
-
-		NBTTagCompound display = new NBTTagCompound();
-
-		display.setString("Name", name);
-
-		display.set("Lore", lore);
-
-		nbt.set("display", display);
-
-		System.out.println(nbt.toString());
-
-		mHead.setTag(nbt);
-
-		item = CraftItemStack.asBukkitCopy(mHead);
-
-	}
-
-	public void addLore(String line) {
-
-		lore.add(new NBTTagString(line));
-
-	}
-
-	// gets item
-	public ItemStack getItem() {
-
-		if (item == null) {
-			createItem();
+			nbt.set("SkullOwner", skullOwner);
 
 		}
 
-		return item;
+		@Override
+		public void createItem() {
 
-	}
+			item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+
+			nmsItem = CraftItemStack.asNMSCopy(item);
+
+			/*
+			 * add glowing effects, etc here
+			 */
+
+			nbt.set("display", getDisplayCompound());
+
+			System.out.println(nbt.toString());
+
+			nmsItem.setTag(nbt);
+
+			item = CraftItemStack.asBukkitCopy(nmsItem);
+
+		}
 
 }

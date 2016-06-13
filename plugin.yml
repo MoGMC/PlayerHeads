@@ -2,6 +2,9 @@ name: HeadPlugin
 main: net.hilaryoi.plugin.headplugin.HeadPlugin
 version: 0.1
 commands:
-  head:
-    usage: /head
-    permission: heads.head
+  crate:
+    usage: /crate
+    permission: heads.crate
+  key:
+    usage: /key
+    permission: heads.key
